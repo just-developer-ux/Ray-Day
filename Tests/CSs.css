@@ -1,0 +1,61 @@
+@import url("../CSS/Icons/Weather_Icons.css");
+
+body{
+   min-height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.testsBlok{
+   position: relative;
+   width: 40px;
+   height: 40px;
+   background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(24,55,23,1) 10%, rgba(43,124,38,1) 20%, rgba(237,220,110,1) 30%, rgba(239,144,79,1) 45%, rgba(196,198,184,1) 60%, rgba(170,171,204,1) 70% ,/* rgba(255,112,73,1) 80%,*/ rgba(92,86,122,1) 100%);
+   border-radius: 10px;
+   overflow: hidden;
+}
+
+.testsBlok::before,
+.testsBlok::after{
+   content: '';
+   position: absolute;
+   width: 120%;
+   height: 28%;
+   bottom: 0;
+   border-radius: 30%;
+   background: linear-gradient(0deg, rgba(0,0,0,1), rgba(24,55,23,1), rgba(43,124,38,1),  transparent);
+   transform: rotate(-10deg) scale(1.5);
+   z-index: 1;
+}
+
+.testsBlok::after{
+   width: 100%;
+   transform: rotate(0deg) scale(1);
+   z-index: 1;
+}
+
+
+.sun_blok{
+   position: absolute;
+   width: 50%;
+   height: 50%;
+   left: 40%;
+   bottom: 15%;
+   transform: translate(-65%, 0);
+}
+
+.cloud_blok{
+   position: absolute;
+   width: 50%;
+   height: 50%;
+   left: 0;
+   top: 10%;
+   z-index: 1;
+}
+
+.cloud_blok:nth-child(2){
+   left: 50%;
+   top: -2%;
+   transform: scale(.7);
+}
