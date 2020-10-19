@@ -1,0 +1,10 @@
+header,
+footer{
+   width: 100wv;
+   height: 0px;
+   background-color: tomato;
+}
+
+footer{
+   margin-top: auto;
+}
