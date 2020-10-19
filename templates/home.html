@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+<title>Ласкаво просимо</title>
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
+<script type="text/javascript">
+	setTimeout(function(){$('.message').fadeOut('fast')},5000);
+</script>
+<style>
+  .test {
+    background: linear-gradient(45deg, rgb(100%, 0%, 0%), rgb(0%, 100%, 0%), rgb(0%, 0%, 100%));
+  }
+</style>
+<div class="navigation">
+    <div class="nav_list">
+        <a class="news" href="/news" style="margin-right: 5px;">Новини</a>
+        <a class="news" href="/exchange-rate" style="margin-right: 5px;">Курси валют</a>
+        <a class="news" href="/holydays" style="margin-right: 5px;">Українські свята</a>
+        <a class="maps" href="/weather-map" style="margin-right: 5px;">Мапа погоди</a><hr>
+    </div>
+</div>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+        <div id="message" class="message" style="color: green;">
+          {{ message }}
+        </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+<form method="POST" class="test">
+    <h1>Ласкаво просимо! Введіть у дану форму назву вашого населеного пункту</h1>
+    <input type="text" style="margin: 0 0 5px 650px;" name="city" required><br>
+    <input type="submit" style="margin-left: 690px;">
+</form>
+</body>
+</html>

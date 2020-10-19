@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<body>
+{% for city_name in weather_data %}
+<title>Погода у {{ city_name.name }}</title>
+{% endfor %}
+<div class="navigation">
+    <div class="nav_list">
+        <a class="news" href="/news" style="margin-right: 5px;">Новини</a>
+        <a class="rate" href="/exchange rate" style="margin-right: 5px;">Курси валют на грн.</a>
+        <a class="hldy" href="/holydays">Українські свята</a>
+        <a class="maps" href="/weather-map"></a><hr>
+    </div>
+</div>
+<form method="POST">
+    <input type="search" placeholder="Введіть назву вашого населеного пункту" name="city" required>
+    <input type="submit">
+</form>
+{% for data in weather_data %}
+<hr>
+<i>Поточний прогноз</i>
+<hr>
+<style>
+.weather_data {
+    background: linear-gradient({{data.gradient}});
+}
+</style>
+<div class="weather_list">
+    <div class="weather_data">
+        <div class="city_name" style="margin: 5px 0 5px 0"><b>Назва - </b>{{ data.name }}</div>
+        <b>Іконка - </b><img src="http://openweathermap.org/img/w/{{ data.icon }}.png" alt="Image">
+        <div class="city_temp" style="margin-bottom: 5px;"><b>Температура - </b>{{ data.temperature }}<sup>o</sup>C</div>
+        <div class="city_discription" style="margin-bottom: 5px;"><b>Опис - </b>{{ data.description }}</div>
+        <div class="city_pressure" style="margin-bottom: 5px;"><b>Тиск - </b>{{ data.pressure }} мм.рт.ст.</div>
+        <div class="city_humidity" style="margin-bottom: 5px;"><b>Вологість - </b>{{ data.humidity }}%</div>
+        <div class="city_visibility" style="margin-bottom: 5px;"><b>Видимість - </b>{{ data.visibility }} м</div>
+        <div class="city_wind_speed" style="margin-bottom: 5px;"><b>Швидкість вітру - </b>{{ data.wind_speed }} м/с</div>
+        <div class="city_wind_deg" style="margin-bottom: 5px;"><b>Градус вітру - </b>{{ data.wind_deg }}<sup>o</sup></div>
+        <div class="city_clouds" style="margin-bottom: 5px;"><b>Хмарність - </b>{{ data.clouds }}%</div>
+    </div>
+</div>
+<hr>
+<i>Віджет</i>
+<hr>
+<div id="openweathermap-widget-11"></div>
+<script src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script><script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 11,cityid: '{{data.city_id}}',appid: '6508b903fa6ea03d764bfe659fe6c985',units: 'metric',containerid: 'openweathermap-widget-11',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();</script>
+{% endfor %}
+<hr>
+<i>Прогноз на 5 днів</i>
+<hr>
+<div class="city_name_5" style="border: 2px solid black;"><b>Назва - </b>{{ city_name }}</div>
+{% for forc in forecast_5_days %}
+<style>
+    .weather_data_five {
+        background: linear-gradient({{ forc.gradient }});
+    }
+</style>
+<div class="weather_list_five" style="border: 2px solid black;">
+    <div class="weather_data_five" style="margin-bottom: 5px;">
+        <div class="city_time" style="margin-bottom: 5px;"><b>День і година - </b>{{ forc.time }}</div>
+        <b>Іконка - </b><img src="http://openweathermap.org/img/w/{{ forc.icon }}.png" alt="Image">
+        <div class="city_temp" style="margin-bottom: 5px;"><b>Температура - </b>{{ forc.temperature }}<sup>o</sup>C</div>
+        <div class="city_discription" style="margin-bottom: 5px;"><b>Опис - </b>{{ forc.description }}</div>
+        <div class="city_pressure" style="margin-bottom: 5px;"><b>Тиск - </b>{{ forc.pressure }} мм.рт.ст.</div>
+        <div class="city_humidity" style="margin-bottom: 5px;"><b>Вологість - </b>{{ forc.humidity }}%</div>
+        <div class="city_visibility" style="margin-bottom: 5px;"><b>Видимість - </b>{{ forc.visibility }} м</div>
+        <div class="city_wind_speed" style="margin-bottom: 5px;"><b>Швидкість вітру - </b>{{ forc.wind_speed }} м/с</div>
+        <div class="city_wind_deg" style="margin-bottom: 5px;"><b>Градус вітру - </b>{{ forc.wind_deg }}<sup>o</sup></div>
+        <div class="city_clouds" style="margin-bottom: 5px;"><b>Хмарність - </b>{{ forc.clouds }}%</div>
+    </div>
+</div>
+{% endfor %}
+</body>
+</html>
